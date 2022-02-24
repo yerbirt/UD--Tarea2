@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link th:href="@{style.css}" rel="stylesheet" />
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<h2>Equipos actuales en la NBA</h2>
+	<table>
+		<tr>
+			<th>Id</th>
+			<th>Nombre</th>
+			<th>Ciudad</th>
+			<th>Pabellón</th>
+			<th>Año fundación</th>
+		</tr>
+		<tr>	
+			<tr th:each="equipo : ${equipos}">
+			<td th:text="${equipo.id}"></td>
+			<td th:text="${equipo.nombre}"></td>
+			<td th:text="${equipo.ciudad}"></td>
+			<td th:text="${equipo.pabellon}"></td>
+			<td th:text="${equipo.fundado}"></td>
+			
+			<td class="actions"><a th:href="@{/jugadores/editarEquipo/{id}(id=${equipo.id})}" class="btn btn-primary">Editar</a>
+								<a th:href="@{/jugadores/borrarEquipo/{id}(id=${equipo.id})}" class="btn btn-danger">Borrar</a>
+			</td>	
+	</tr>
+	</table>
+	<a class="anadir" th:href="@{/jugadores/nuevoEquipo}">Añadir equipo</a>
+<h2>Listado de Jugadores NBA</h2>
+<table>
+	<tr>
+		<th>Id</th>
+		<th>Nombre</th>
+		<th>Apellido</th>
+		<th>Altura</th>
+		<th>Peso</th>
+	</tr>
+	<tr>	
+		<tr th:each="jugador : ${jugadores}">
+			<td th:text="${jugador.id}"></td>
+			<td th:text="${jugador.firstName}"></td>
+			<td th:text="${jugador.lastName}"></td>
+			<td th:text="${jugador.altura}"></td>
+			<td th:text="${jugador.peso}"></td>
+
+			<td class="actions"><a th:href="@{/jugadores/editar/{id}(id=${jugador.id})}" class="btn btn-primary">Editar</a>
+							<a th:href="@{/jugadores/borrar/{id}(id=${jugador.id})}" class="btn btn-danger">Borrar</a>
+			</td>
+						
+	</tr>	
+</table>
+<a class="anadir" th:href="@{/jugadores/nuevo}">Añadir jugador</a>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

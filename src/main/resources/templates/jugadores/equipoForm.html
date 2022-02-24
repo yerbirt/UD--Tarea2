@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link th:href="@{style.css}" rel="stylesheet" />
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<form method="post" action="#"th:action="@{/jugadores/nuevoEquipo/submit}" th:object="${equipo}">
+<h1>
+	<span th:text="${id} ? 'Editar ' : 'Nuevo '"></span>equipo
+</h1>
+	<input type="hidden" th:field="*{id}" id="id" />
+	<div class="form-group">
+		<label for="nameInput">Nombre: </label>
+		<input class="form-control" type="text" placeholder="Añade el nombre" th:field="*{nombre}">
+	</div>
+	<div class="form-group">
+		<label for="ciudadInput">Ciudad: </label>
+		<input class="form-control" type="text" placeholder="Añade la ciudad" th:field="*{ciudad}">
+	</div>
+	<div class="form-group">
+		<label for="pabellonInput">Pabellon: </label>
+		<input class="form-control" type="text" placeholder="Añade el pabellon" th:field="*{pabellon}">
+	</div>
+	<div class="form-group">
+		<label for="fundadoInput">Fundado: </label>
+		<input class="form-control" type="text" placeholder="Añade el año de fundación" th:field="*{fundado}">
+	</div>
+
+
+	
+	<button type="submit" class="btn btn-primary">Enviar</button>
+</form>
+
+<div th:replace="fragments/footer :: footer"></div>
+<br/>
+</body>
+</html>
